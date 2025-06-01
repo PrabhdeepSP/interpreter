@@ -24,10 +24,9 @@ public class Main {
     }
 
     public static void run(String sourceCode) {
-        Lexer lexer = new Lexer();
-        List<Token> tokens = lexer.scanForTokens(sourceCode);
+        Lexer lexer = new Lexer(sourceCode);
 
-        for (Token t : tokens) {
+        for (Token t : lexer) {
             System.out.println(t);
         }
     }

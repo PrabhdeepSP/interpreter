@@ -1,10 +1,28 @@
 package frontend;
 
-import java.util.List;
+import java.util.Iterator;
 
-public class Lexer {
-    // returns a list of valid tokens
-    public List<Token> scanForTokens(String sourceCode) {
-        return List.of(new Token("name", TokenType.IDENTIFIER, 3));
+public class Lexer implements Iterator<Token>, Iterable<Token> {
+    private final String sourceCode;
+    private int index;
+
+    public Lexer(String sourceCode) {
+        this.sourceCode = sourceCode;
+        this.index = 0;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public Token next() {
+        return null;
+    }
+
+    @Override
+    public Iterator<Token> iterator() {
+        return this;
     }
 }
