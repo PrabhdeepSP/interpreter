@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Run TreeLox via Gradle and forward all command-line arguments as a single argument string
+gradle treelox -Pargs="$*"

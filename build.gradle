@@ -1,12 +1,11 @@
 plugins {
-    id 'application'
     id 'java'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-}
+// java {
+//     sourceCompatibility = JavaVersion.VERSION_17
+//     targetCompatibility = JavaVersion.VERSION_17
+// }
 
 repositories {
     mavenCentral()
@@ -17,10 +16,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
 }
 
-application {
-    // Default main class (just for convenience)
-    mainClass = 'treelox.Main'
-}
+// application {
+//     // Default main class (just for convenience)
+//     mainClass = 'treelox.Main'
+// }
 
 // Task to run TreeWalk interpreter
 task treelox(type: JavaExec) {
@@ -28,6 +27,10 @@ task treelox(type: JavaExec) {
     description = 'Run the TreeLox interpreter'
     classpath = sourceSets.main.runtimeClasspath
     main = 'treelox.Main'
+
+    if (project.hasProperty('args')) {
+        args project.args.split()
+    }
 }
 
 // Task to run IR-based interpreter
@@ -36,5 +39,9 @@ task vmlox(type: JavaExec) {
     description = 'Run the vmlox interpreter'
     classpath = sourceSets.main.runtimeClasspath
     main = 'vmlox.Main'
+
+    if (project.hasProperty('args')) {
+        args project.args.split()
+    }
 }
 	
