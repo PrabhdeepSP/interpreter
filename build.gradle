@@ -27,10 +27,12 @@ task treelox(type: JavaExec) {
     description = 'Run the TreeLox interpreter'
     classpath = sourceSets.main.runtimeClasspath
     main = 'treelox.Main'
+    standardInput = System.in
 
     if (project.hasProperty('args')) {
         args project.args.split()
     }
+
 }
 
 // Task to run IR-based interpreter
@@ -39,6 +41,8 @@ task vmlox(type: JavaExec) {
     description = 'Run the vmlox interpreter'
     classpath = sourceSets.main.runtimeClasspath
     main = 'vmlox.Main'
+    standardInput = System.in
+
 
     if (project.hasProperty('args')) {
         args project.args.split()

@@ -1,4 +1,8 @@
 #!/bin/bash
 
 # Run TreeLox via Gradle and forward all command-line arguments as a single argument string
-gradle treelox -Pargs="$*"
+if [ $# -gt 0 ]; then
+    gradle treelox --console=plain -Pargs="$*"
+else
+    gradle treelox --console=plain
+fi

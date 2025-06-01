@@ -1,4 +1,8 @@
 #!/bin/bash
 
-# Run TreeLox via Gradle and forward all command-line arguments as a single argument string
-gradle vmlox -Pargs="$*"
+# Run vmlox via Gradle and forward all command-line arguments as a single argument string
+if [ $# -gt 0 ]; then
+    gradle vmlox --console=plain -Pargs="$*"
+else
+    gradle vmlox --console=plain
+fi
