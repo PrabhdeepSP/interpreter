@@ -11,11 +11,19 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
         this.index = 0;
     }
 
+    // postcondition: Returns true if there is next token in stream and moves the
+    // index to start of next token.
+    // Otherwise, returns false and moves the index to end of stream.
     @Override
     public boolean hasNext() {
-        return false;
+        while (Character.isWhitespace(sourceCode.charAt(index)))
+            index++;
+        return index < sourceCode.length();
     }
 
+    // precondtion: index should point to start of a token
+    // postcondtion: consumes the first token. if its valid return it otherwise
+    // throws exception.
     @Override
     public Token next() {
         return null;
