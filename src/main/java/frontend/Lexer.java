@@ -5,10 +5,12 @@ import java.util.Iterator;
 public class Lexer implements Iterator<Token>, Iterable<Token> {
     private final String sourceCode;
     private int index;
+    private int lineNum;
 
     public Lexer(String sourceCode) {
         this.sourceCode = sourceCode;
         this.index = 0;
+        this.lineNum = 1;
     }
 
     // postcondition: Returns true if there is next token in stream and moves the
@@ -16,8 +18,11 @@ public class Lexer implements Iterator<Token>, Iterable<Token> {
     // Otherwise, returns false and moves the index to end of stream.
     @Override
     public boolean hasNext() {
-        while (Character.isWhitespace(sourceCode.charAt(index)))
+        while (Character.isWhitespace(sourceCode.charAt(index))) {
+            if (sourceCode.charAt(index) == '\n')
+                ++lineNum;
             index++;
+        }
         return index < sourceCode.length();
     }
 
